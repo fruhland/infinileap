@@ -98,7 +98,7 @@ jextract {
                 'ucp_dt_create_generic', 'ucp_dt_destroy',
 
                 // Request
-                'ucp_request_alloc', 'ucp_request_cancel', 'ucp_request_check_status', 'ucp_request_free',
+                'ucp_request_alloc', 'ucp_request_cancel', 'ucp_request_check_status', 'ucp_request_free', 'ucp_tag_recv_request_test',
 
                 // Remote Key
                 'ucp_rkey_buffer_release', 'ucp_rkey_destroy',

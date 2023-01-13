@@ -10,8 +10,7 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static org.openucx.Communication.ucp_request_check_status;
-import static org.openucx.Communication.ucp_request_free;
+import static org.openucx.Communication.*;
 
 public class Requests {
 
@@ -186,6 +185,19 @@ public class Requests {
         }
 
         return State.COMPLETE;
+    }
+
+    public static State tagReceiveTest(long handle, MemorySegment tagInfo) {
+        long status = ucp_tag_recv_request_test(handle, tagInfo);
+        if (Status.isError(handle)) {
+            return State.ERROR;
+        }
+
+        if (Status.is(handle, Status.OK)) {
+            return State.COMPLETE;
+        }
+
+        return State.PENDING;
     }
 
     public static void release(long handle) {

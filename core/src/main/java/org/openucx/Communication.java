@@ -305,4 +305,23 @@ public class Communication {
             throw new AssertionError("should not reach here", ex$);
         }
     }
+
+    // -------- UCP TAG RECEIVE REQUEST TEST ---------- //
+
+    private static final FunctionDescriptor ucp_tag_recv_request_test$FUNC = FunctionDescriptor.of(ValueLayout.JAVA_BYTE,
+            REQUEST_HANDLE,
+            ValueLayout.ADDRESS
+    );
+
+    private static final MethodHandle ucp_tag_recv_request_test$MH = RuntimeHelper.downcallHandle(
+            "ucp_tag_recv_request_test", ucp_tag_recv_request_test$FUNC
+    );
+
+    public static byte ucp_tag_recv_request_test (long request, MemorySegment tagInfo) {
+        try {
+            return (byte) ucp_tag_recv_request_test$MH.invokeExact(request, tagInfo);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
 }
